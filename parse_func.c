@@ -10,7 +10,6 @@
 void push(stack_t **stack, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *layer = malloc(sizeof(stack_t));
-
 	if (layer == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
