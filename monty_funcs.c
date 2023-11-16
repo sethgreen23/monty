@@ -128,7 +128,9 @@ inst_fun get_opcode_func(char *opcode)
 		{"sub", sub},
 		{"mul", mul},
 		{"mod", mod},
-		{NULL, NULL}};
+		{"pchar", pchar},
+		{NULL, NULL}
+		};
 	while (instructions[i].f != NULL)
 	{
 		if (strcmp(instructions[i].opcode, opcode) == 0)
