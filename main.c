@@ -1,7 +1,5 @@
 #include "monty.h"
 
-vars_global global_vars;
-
 /**
  * main - main function
  * @argc: arguments count
@@ -11,6 +9,7 @@ vars_global global_vars;
  */
 int main(int argc, char **argv)
 {
+	vars_global global_vars;
 	stack_t *stack = NULL;
 
 	/* check if the arguments are different to 2*/
