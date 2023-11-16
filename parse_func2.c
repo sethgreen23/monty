@@ -64,9 +64,16 @@ void pstr(stack_t **stack, unsigned int line_number)
 	stack_t *temp = *stack;
 
 	(void)line_number;
+	if (temp == NULL)
+	{
+		putchar('\n');
+		return;
+	}
+
 	while (temp && (temp->n < 128 && temp->n > 0))
 	{
-		fprintf(stdout, "%c\n", temp->n);
+		fprintf(stdout, "%c", temp->n);
 		temp = temp->prev;
 	}
+	putchar('\n');
 }
