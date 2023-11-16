@@ -9,9 +9,8 @@
  */
 int main(int argc, char **argv)
 {
-	vars_global global_vars;
 	stack_t *stack = NULL;
-
+	
 	/* check if the arguments are different to 2*/
 	if (argc != 2)
 	{

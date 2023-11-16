@@ -1,5 +1,6 @@
 #include "monty.h"
 
+static int arg;
 /**
  * read_file - read the file lines
  * @filename: filename
@@ -14,6 +15,7 @@ void read_file(char *filename, stack_t **stack)
 	char *opcode;
 	int line_num = 1;
 	inst_fun func;
+	vars_glddobal global_vars;
 
 	/*Open the file*/
 	global_vars.file = fopen(filename, "r");
@@ -67,7 +69,7 @@ char *parse_line(int linenum)
 		argument = strtok(NULL, " \n");
 		if (argument != NULL && is_numerical(argument))
 		{
-			global_vars.arg = atoi(argument);
+			arg = atoi(argument);
 		}
 		else
 		{
@@ -132,14 +134,12 @@ inst_fun get_opcode_func(char *opcode)
 	}
 	return (NULL);
 }
-/**
- * is_empty - check if the stack is empty
- * @stack: stack
- *
- * Return: 1 if empty, 0 if not
- */
-int is_empty(stack_t *stack)
-{
-	return (stack == NULL);
-}
 
+/**
+ * get_arg - return the arg variable
+ * Return: the arg faraiable
+ */
+int get_arg()
+{
+	return (arg);
+}
