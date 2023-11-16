@@ -58,6 +58,6 @@ void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 int get_arg(void);
 void pchar(stack_t **stack, unsigned int line_number);
-
+void pstr(stack_t **stack, unsigned int line_number);
 
 #endif

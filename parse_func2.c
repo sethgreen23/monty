@@ -51,3 +51,22 @@ void pchar(stack_t **stack, unsigned int line_number)
 	printf("%c\n", (*stack)->n);
 }
 
+/**
+ * pstr - prints the string starting at the top of the stack, followed 
+ * by a new line, while the interger being treated as an ascii value
+ * @stack: stack
+ * @line_number: line_number
+ *
+ * Return: nothing
+ */
+void pstr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp = *stack;
+
+	(void)line_number;
+	while (temp && (temp->n < 128 && temp->n > 0))
+	{
+		fprintf(stdout, "%c\n", temp->n);
+		temp = temp->prev;
+	}
+}
