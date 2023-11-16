@@ -142,3 +142,4 @@ int is_empty(stack_t *stack)
 {
 	return (stack == NULL);
 }
+
