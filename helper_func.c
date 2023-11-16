@@ -21,12 +21,12 @@ void free_stack(stack_t **stack)
 }
 
 /**
- *  * is_empty - check if the stack is empty
- *   * @stack: stack
- *    *
- *     * Return: 1 if empty, 0 if not
- *      */
+ * is_empty - check if the stack is empty
+ * @stack: stack
+ *
+ * Return: 1 if empty, 0 if not
+ **/
 int is_empty(stack_t *stack)
 {
-		return (stack == NULL);
+	return (stack == NULL);
 }
