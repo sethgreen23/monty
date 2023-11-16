@@ -41,7 +41,7 @@ typedef void (*inst_fun)(stack_t **stack, unsigned int line_number);
 
 inst_fun get_opcode_func(char *str);
 void read_file(char *filename, stack_t **stack);
-char *parse_line(int linenum);
+char *parse_line(int linenum, char *line);
 int is_numerical(char *str);
 int is_empty(stack_t *stack);
 void push(stack_t **stack, unsigned int line_number);
@@ -56,7 +56,5 @@ void sub(stack_t **stack, unsigned int line_number);
 void divide(stack_t **stack, unsigned int line_number);
 void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
-void get_arg();
-
-
+int get_arg(void);
 #endif

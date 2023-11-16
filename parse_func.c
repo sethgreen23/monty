@@ -17,7 +17,7 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	layer->n = get_arg(); 
+	layer->n = get_arg();
 	layer->next = NULL;
 	layer->prev = *stack;
 	if (!is_empty(*stack))
