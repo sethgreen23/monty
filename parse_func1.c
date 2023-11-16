@@ -55,7 +55,7 @@ void sub(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * div - div divides the second top element of the stack by the top
+ * divide - div divides the second top element of the stack by the top
  * element of the stack.
  * and operate pop, unless top == zero
  * @stack: stack
