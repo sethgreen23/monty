@@ -13,23 +13,24 @@ void read_file(char *filename, stack_t **stack)
 {
 	size_t len = 0;
 	ssize_t lread = 0;
-	char *opcode;
+	char *opcode = NULL, *line = NULL;
 	int line_num = 1;
 	inst_fun func;
+	FILE *file;
 
 	/*Open the file*/
-	global_vars.file = fopen(filename, "r");
-	if (global_vars.file == NULL)
+	file = fopen(filename, "r");
+	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
 	/*read the lines*/
 
-	global_vars.line = NULL;
-	while ((lread = getline(&global_vars.line, &len, global_vars.file)) != -1)
+	line = NULL;
+	while ((lread = getline(&line, &len, file)) != -1)
 	{
-		opcode = parse_line(line_num);
+		opcode = parse_line(line_num, line);
 		if (opcode == NULL || opcode[0] == '#')
 		{
 			line_num++;
@@ -45,26 +46,27 @@ void read_file(char *filename, stack_t **stack)
 		func(stack, line_num);
 		line_num++;
 	}
-	free(global_vars.line);
-	fclose(global_vars.file);
+	free(line);
+	fclose(file);
 }
 
 /**
  * parse_line - parse the line
  * @linenum: linenum
+ * @line: line
  *
  * Return: opcode or NULL
  */
-char *parse_line(int linenum)
+char *parse_line(int linenum, char *line)
 {
 	char *opcode = NULL;
 	char *argument = NULL;
 
 	/*start by tokenize the string to get the opcode*/
-	opcode = strtok(global_vars.line, " \n");
+	opcode = strtok(line, " \n");
 	if (opcode == NULL)
 		return (NULL);
-	
+
 	if (strcmp(opcode, "push") == 0)
 	{
 		argument = strtok(NULL, " \n");
@@ -144,9 +146,9 @@ inst_fun get_opcode_func(char *opcode)
 
 /**
  * get_arg - return the arg variable
- * Return: the arg faraiable
+ * Return: arg value
  */
-int get_arg()
+int get_arg(void)
 {
 	return (arg);
 }

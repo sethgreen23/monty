@@ -10,7 +10,7 @@
 int main(int argc, char **argv)
 {
 	stack_t *stack = NULL;
-	
+
 	/* check if the arguments are different to 2*/
 	if (argc != 2)
 	{
