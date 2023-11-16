@@ -1,6 +1,7 @@
 #include "monty.h"
 
 static int arg;
+
 /**
  * read_file - read the file lines
  * @filename: filename
@@ -15,7 +16,6 @@ void read_file(char *filename, stack_t **stack)
 	char *opcode;
 	int line_num = 1;
 	inst_fun func;
-	vars_glddobal global_vars;
 
 	/*Open the file*/
 	global_vars.file = fopen(filename, "r");
@@ -30,7 +30,7 @@ void read_file(char *filename, stack_t **stack)
 	while ((lread = getline(&global_vars.line, &len, global_vars.file)) != -1)
 	{
 		opcode = parse_line(line_num);
-		if (opcode == NULL)
+		if (opcode == NULL || opcode[0] == '#')
 		{
 			line_num++;
 			continue;
@@ -64,6 +64,7 @@ char *parse_line(int linenum)
 	opcode = strtok(global_vars.line, " \n");
 	if (opcode == NULL)
 		return (NULL);
+	
 	if (strcmp(opcode, "push") == 0)
 	{
 		argument = strtok(NULL, " \n");
@@ -123,6 +124,10 @@ inst_fun get_opcode_func(char *opcode)
 		{"swap", swap},
 		{"add", add},
 		{"nop", nop},
+		{"div", divide},
+		{"sub", sub},
+		{"mul", mul},
+		{"mod", mod},
 		{NULL, NULL}};
 	while (instructions[i].f != NULL)
 	{
