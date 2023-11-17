@@ -1,7 +1,5 @@
 #include "monty.h"
 
-static stack_t *start;
-
 /**
  * push - push element to the stack
  * @stack: stack
@@ -25,10 +23,6 @@ void push(stack_t **stack, unsigned int line_number)
 	if (!is_empty(*stack))
 	{
 		(*stack)->next = layer;
-	}
-	else
-	{
-		set_start(layer);
 	}
 	*stack = layer;
 }
@@ -70,20 +64,54 @@ void pint(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * set_start - set the start variable
- * @start: the value of start
- * Return: void
-*/
-void set_start(stack_t *start_value)
+ * pop - delete the top most layer of the stack
+ * @stack: stack
+ * @line_number: line_number
+ *
+ * Return: nothing
+ */
+void pop(stack_t **stack, unsigned int line_number)
 {
-	start = start_value;
+	stack_t *temp = NULL;
+
+	if (is_empty(*stack))
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->prev == NULL)
+	{
+		(*stack)->next = NULL;
+		free(*stack), *stack = NULL;
+	}
+	else
+	{
+		temp = *stack;
+		/*shouldn't stack -> next == NULL?*/
+		*stack = (*stack)->prev;
+		temp->prev = NULL;
+		temp->next = NULL;
+		free(temp), temp = NULL;
+	}
 }
 
 /**
- * get_start - return the start variable
- * Return: the value of it
-*/
-stack_t *get_start()
+ * swap - swap the top two elements of the slack
+ * @stack: stack
+ * @line_number: line_number
+ *
+ * Return: nothing
+ */
+void swap(stack_t **stack, unsigned int line_number)
 {
-	return (start);
+	int temp;
+
+	if (*stack == NULL || (*stack)->prev == NULL)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	temp = (*stack)->n;
+	(*stack)->n = (*stack)->prev->n;
+	(*stack)->prev->n = temp;
 }
