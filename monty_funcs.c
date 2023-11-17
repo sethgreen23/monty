@@ -30,7 +30,10 @@ void read_file(char *filename, stack_t **stack)
 	line = NULL;
 	while ((lread = getline(&line, &len, file)) != -1)
 	{
+		printf("%s\n", line);
 		opcode = parse_line(line_num, line);
+		printf("%s\n", opcode);
+
 		if (opcode == NULL || opcode[0] == '#')
 		{
 			line_num++;
@@ -63,6 +66,7 @@ char *parse_line(int linenum, char *line)
 	char *argument = NULL;
 
 	/*start by tokenize the string to get the opcode*/
+	printf("%s\n", line);
 	opcode = strtok(line, " \n");
 	if (opcode == NULL)
 		return (NULL);
@@ -132,8 +136,8 @@ inst_fun get_opcode_func(char *opcode)
 		{"mod", mod},
 		{"pchar", pchar},
 		{"pstr", pstr},
-		{NULL, NULL}
-		};
+		{"rotl", rotl},
+		{NULL, NULL}};
 	while (instructions[i].f != NULL)
 	{
 		if (strcmp(instructions[i].opcode, opcode) == 0)
