@@ -133,6 +133,7 @@ inst_fun get_opcode_func(char *opcode)
 		{"pchar", pchar},
 		{"pstr", pstr},
 		{"rotl", rotl},
+		{"rotr", rotr},
 		{NULL, NULL}
 		};
 	while (instructions[i].f != NULL)

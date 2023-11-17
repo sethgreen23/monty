@@ -105,3 +105,31 @@ void rotl(stack_t **stack, unsigned int line_number)
     temp->prev = first;
     first->next = temp;
 }
+
+/**
+ * rotr - prints the string starting at the top of the stack, followed
+ * by a new line, while the interger being treated as an ascii value
+ * @stack: stack
+ * @line_number: line_number
+ *
+ * Return: nothing
+ */
+void rotr(stack_t **stack, unsigned int line_number)
+{
+    stack_t *temp = NULL, *first = *stack, *last = NULL;
+
+    (void)line_number;
+    if (*stack == NULL || (*stack)->prev == NULL)
+    {
+        return;
+    }
+    temp = *stack;
+    while (temp->prev->prev != NULL)
+        temp = temp->prev;
+    last = temp->prev;
+    last->next = NULL;
+    temp->prev = NULL;
+    last->prev = first;
+    first->next = last;
+    *stack = last;
+}
