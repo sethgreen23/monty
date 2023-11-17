@@ -60,7 +60,7 @@ int get_arg(void);
 void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
 void rotl(stack_t **stack, unsigned int line_number);
-stack_t *get_start();
-void set_start(stack_t *start);
+void rotr(stack_t **stack, unsigned int line_number);
+
 
 #endif
