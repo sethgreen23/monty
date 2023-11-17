@@ -77,3 +77,31 @@ void pstr(stack_t **stack, unsigned int line_number)
 	}
 	putchar('\n');
 }
+
+/**
+ * rotl - prints the string starting at the top of the stack, followed
+ * by a new line, while the interger being treated as an ascii value
+ * @stack: stack
+ * @line_number: line_number
+ * Return: nothing
+ */
+void rotl(stack_t **stack, unsigned int line_number)
+{
+    stack_t *temp = NULL, *first = NULL;
+
+    (void)line_number;
+    if (*stack == NULL || (*stack)->prev == NULL)
+    {
+        return;
+    }
+    first = *stack;
+    *stack = (*stack)->prev;
+    (*stack)->next = NULL;
+    first->prev = NULL;
+    first->next = NULL;
+    temp = *stack;
+    while (temp->prev != NULL)
+        temp = temp->prev;
+    temp->prev = first;
+    first->next = temp;
+}
